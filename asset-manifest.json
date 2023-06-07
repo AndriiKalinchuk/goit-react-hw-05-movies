@@ -1,13 +1,14 @@
 {
   "files": {
     "main.css": "/goit-react-hw-05-movies/static/css/main.7acaea2f.css",
-    "main.js": "/goit-react-hw-05-movies/static/js/main.268253e9.js",
+    "main.js": "/goit-react-hw-05-movies/static/js/main.a8885c3c.js",
+    "static/media/pulp-fiction-john-travolta.gif": "/goit-react-hw-05-movies/static/media/pulp-fiction-john-travolta.59b46f4510af6cc07976.gif",
     "index.html": "/goit-react-hw-05-movies/index.html",
     "main.7acaea2f.css.map": "/goit-react-hw-05-movies/static/css/main.7acaea2f.css.map",
-    "main.268253e9.js.map": "/goit-react-hw-05-movies/static/js/main.268253e9.js.map"
+    "main.a8885c3c.js.map": "/goit-react-hw-05-movies/static/js/main.a8885c3c.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.268253e9.js"
+    "static/js/main.a8885c3c.js"
   ]
 }
