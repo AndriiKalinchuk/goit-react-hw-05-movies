@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
-import { SearchFormButton, SearchFormInput, SearchForm } from './Movies.styled';
+import {
+  SearchFormButton,
+  SearchFormInput,
+  SearchForm,
+  SerchFormWrapper,
+} from './Movies.styled';
 
 export default function Movies({ onSubmit }) {
   const [search, setSearch] = useState('');
@@ -19,18 +24,20 @@ export default function Movies({ onSubmit }) {
   };
 
   return (
-    <SearchForm onSubmit={handleSubmit}>
-      <SearchFormButton type="submit">
-        <FiSearch size="16px" />
-      </SearchFormButton>
-      <SearchFormInput
-        placeholder="What movie do you want to find?"
-        name="search"
-        // required
-        autoFocus
-        value={search}
-        onChange={handleChange}
-      />
-    </SearchForm>
+    <SerchFormWrapper>
+      <SearchForm onSubmit={handleSubmit}>
+        <SearchFormButton type="submit">
+          <FiSearch size="16px" />
+        </SearchFormButton>
+        <SearchFormInput
+          placeholder="What movie do you want to find?"
+          name="search"
+          // required
+          autoFocus
+          value={search}
+          onChange={handleChange}
+        />
+      </SearchForm>
+    </SerchFormWrapper>
   );
 }
