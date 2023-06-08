@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getTrendingMovies } from 'service/movies.service';
+import { getTrendingMovies } from 'service/movies-service';
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
