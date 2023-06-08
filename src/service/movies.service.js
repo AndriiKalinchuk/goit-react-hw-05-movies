@@ -6,9 +6,10 @@ axios.defaults.params = {
   include_adult: false,
 };
 
-export const getTrendingMovies = async lng => {
-  const { data } = await axios.get(`/trending/get-trending`, {
+export const getTrendingMovies = async (page = 1, lng) => {
+  const { data } = await axios.get(`/trending/movie/day`, {
     params: {
+      page,
       language: lng,
     },
   });
