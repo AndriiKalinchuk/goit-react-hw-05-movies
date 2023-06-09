@@ -6,49 +6,42 @@ axios.defaults.params = {
   include_adult: false,
 };
 
-export const getTrendingMovies = async (page = 1, lng) => {
+export const getTrendingMovies = async (page = 1) => {
   const { data } = await axios.get(`/trending/movie/day`, {
     params: {
       page,
-      language: lng,
     },
   });
   return data;
 };
 
-export const getMoviesByQuery = async (page = 1, query = '', lng) => {
-  const urlParam = query
-    ? `/search/movie?page=${page}&query=${query}&language=${lng}`
-    : `/movie/upcoming?page=${page}&language=${lng}`;
-  const { data } = await axios.get(urlParam);
+export const getMoviesByQuery = async (query = '') => {
+  const { data } = await axios.get(`/search/movie?query=${query}`);
   return data;
 };
 
-export const getMoviesDetailsById = async (movieId, lng) => {
+export const getMoviesDetailsById = async movieId => {
   const { data } = await axios.get(`movie/${movieId}`, {
     params: {
       id: movieId,
-      language: lng,
     },
   });
   return data;
 };
 
-export const getMoviesCast = async (movieId, lng) => {
+export const getMoviesCast = async movieId => {
   const { data } = await axios.get(`movie/${movieId}/credits`, {
     params: {
       id: movieId,
-      language: lng,
     },
   });
   return data.cast;
 };
 
-export const getMoviesReviews = async (movieId, lng) => {
+export const getMoviesReviews = async movieId => {
   const { data } = await axios.get(`movie/${movieId}/reviews`, {
     params: {
       id: movieId,
-      language: lng,
     },
   });
   return data.results;

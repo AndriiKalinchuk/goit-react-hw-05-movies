@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import { FiSearch } from 'react-icons/fi';
 import {
   SearchFormButton,
@@ -6,38 +7,58 @@ import {
   SearchForm,
   SerchFormWrapper,
 } from './Movies.styled';
+import { getMoviesByQuery } from 'service/movies-service';
+import { Link } from 'react-router-dom';
 
 export default function Movies({ onSubmit }) {
-  const [search, setSearch] = useState('');
+  const [query, setQuery] = useState('');
+  const [movies, setMovies] = useState([]);
 
   const handleChange = e => {
-    setSearch(e.target.value);
+    setQuery(e.target.value);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!search.trim()) {
+    if (!query.trim()) {
       return alert('Enter text');
     }
-    onSubmit(search);
-    setSearch('');
+    onSubmit(query);
+    setQuery('');
   };
 
+  useEffect(() => {
+    const getMovies = async () => {
+      const data = await getMoviesByQuery(query);
+      setMovies(data.results);
+    };
+    getMovies();
+  }, [query]);
+
   return (
-    <SerchFormWrapper>
-      <SearchForm onSubmit={handleSubmit}>
-        <SearchFormButton type="submit">
-          <FiSearch size="16px" />
-        </SearchFormButton>
-        <SearchFormInput
-          placeholder="What movie do you want to find?"
-          name="search"
-          // required
-          autoFocus
-          value={search}
-          onChange={handleChange}
-        />
-      </SearchForm>
-    </SerchFormWrapper>
+    <>
+      <SerchFormWrapper>
+        <SearchForm onSubmit={handleSubmit}>
+          <SearchFormButton type="submit">
+            <FiSearch size="16px" />
+          </SearchFormButton>
+          <SearchFormInput
+            placeholder="What movie do you want to find?"
+            name="search"
+            // required
+            autoFocus
+            value={query}
+            onChange={handleChange}
+          />
+        </SearchForm>
+      </SerchFormWrapper>
+      <ul>
+        {movies.map(movie => (
+          <li key={movie.id}>
+            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
