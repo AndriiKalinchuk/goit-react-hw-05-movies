@@ -1,3 +1,4 @@
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import NotFoundPage from 'pages/NotFoundPages/NotFoundPage';
 import Home from 'pages/Home';
@@ -11,11 +12,10 @@ export const App = () => {
       <Route path="/" element={<SharedLayout />}>
         <Route path="*" element={<NotFoundPage />} />
         <Route index element={<Home />} />
-        <Route path="movies" element={<Movies />}>
-          <Route path=":movieId'" element={<MovieDetails />}>
-            {/* <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} /> */}
-          </Route>
+        <Route path="movies" element={<Movies />} />
+        <Route path="movies/:movieId/*" element={<MovieDetails />}>
+          {/* <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} /> */}
         </Route>
       </Route>
     </Routes>
