@@ -1,93 +1,45 @@
-import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { getMoviesReviews } from 'service/movies-service';
 
-export const CastList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  padding-top: ${({ theme }) => theme.space[5]}px;
-  padding-bottom: ${({ theme }) => theme.space[5]}px;
-  text-align: center;
-`;
+import {
+  ReviewContent,
+  ReviewItem,
+  ReviewsAuthor,
+  ReviewsList,
+} from './Reviews.styled';
 
-export const CastItem = styled.li`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+export const Reviews = () => {
+  const { movieId } = useParams();
+  const [movieReviews, setMovieReviews] = useState([]);
 
-  max-width: 100%;
-  width: 180px;
-  height: 100%;
+  useEffect(() => {
+    const fetchReviews = async () => {
+      const data = await getMoviesReviews(movieId);
+      setMovieReviews(data);
+    };
 
-  border-radius: 8px;
-  border: none;
-  outline: none;
+    fetchReviews();
+  }, [movieId]);
 
-  box-shadow: 9px 7px 19px 7px rgba(42, 79, 42, 0.17);
-  -webkit-box-shadow: 9px 7px 19px 7px rgba(42, 79, 42, 0.17);
-  -moz-box-shadow: 9px 7px 19px 7px rgba(42, 79, 42, 0.17);
-
-  font-size: 12px;
-  font-weight: 700;
-  overflow: hidden;
-`;
-
-export const CastPhotoThumb = styled.div`
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 10px;
-`;
-
-export const CastPhoto = styled.img`
-  display: block;
-  min-height: 100%;
-  height: 240px;
-  width: 100%;
-
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  transition: transform 250ms linear;
-  transform: scale(1);
-
-  object-fit: cover;
-  object-position: center;
-
-  &:hover {
-    transform: scale(1.1);
+  if (!movieReviews) {
+    return <div>Loading...</div>;
   }
-`;
 
-export const Wrap = styled.div`
-  flex-direction: column;
-  align-items: center;
-  flex: 1 0 auto;
-  padding: 4px;
-`;
-
-export const MovieHero = styled.span`
-  color: ${props => props.theme.colors.accent};
-`;
-
-export const ActorsName = styled.h3`
-  margin-bottom: ${props => props.theme.space[4]}px;
-  text-align: center;
-  color: ${({ theme }) => theme.text};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
-  font-weight: 500;
-
-  @media screen and (min-width: 480px) {
-    font-size: ${({ theme }) => theme.fontSizes.s};
-  }
-`;
-
-export const ActorsCharacter = styled.p`
-  margin-bottom: ${props => props.theme.space[4]}px;
-  text-align: center;
-  color: ${({ theme }) => theme.text};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
-  font-weight: 500;
-
-  @media screen and (min-width: 480px) {
-    font-size: ${({ theme }) => theme.fontSizes.s};
-  }
-`;
+  return (
+    <>
+      {movieReviews.length > 0 ? (
+        <ReviewsList>
+          {movieReviews.map(review => (
+            <ReviewItem key={review.id}>
+              <ReviewsAuthor>Author: {review.author}</ReviewsAuthor>
+              <ReviewContent>{review.content}</ReviewContent>
+            </ReviewItem>
+          ))}
+        </ReviewsList>
+      ) : (
+        <div>We don't have any reviews for this movie.</div>
+      )}
+    </>
+  );
+};

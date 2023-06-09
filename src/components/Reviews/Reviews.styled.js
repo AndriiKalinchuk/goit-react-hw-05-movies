@@ -4,8 +4,8 @@ export const ReviewsList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding-top: ${({ theme }) => theme.space[5]}px;
-  padding-bottom: ${({ theme }) => theme.space[5]}px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 `;
 export const ReviewItem = styled.li`
   display: flex;
@@ -14,30 +14,8 @@ export const ReviewItem = styled.li`
   font-size: 12px;
 `;
 
-export const Wrap = styled.div`
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
-`;
-export const ReviewPhotoThumb = styled.div`
-  position: relative;
-`;
-
-export const ReviewPhoto = styled.img`
-  display: block;
-
-  height: 60px;
-  width: auto;
-
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-
-  object-fit: cover;
-  object-position: center;
-`;
-
 export const ReviewsAuthor = styled.p`
-  color: ${props => props.theme.colors.accent};
+  color: darkblue;
   font-weight: 700;
 `;
 export const ReviewContent = styled.p`

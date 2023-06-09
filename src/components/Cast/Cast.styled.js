@@ -5,8 +5,8 @@ export const CastList = styled.ul`
   flex-wrap: wrap;
   justify-content: center;
   gap: 16px;
-  padding-top: ${({ theme }) => theme.space[5]}px;
-  padding-bottom: ${({ theme }) => theme.space[5]}px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   text-align: center;
 `;
 
@@ -23,19 +23,9 @@ export const CastItem = styled.li`
   border: none;
   outline: none;
 
-  box-shadow: 9px 7px 19px 7px rgba(42, 79, 42, 0.17);
-  -webkit-box-shadow: 9px 7px 19px 7px rgba(42, 79, 42, 0.17);
-  -moz-box-shadow: 9px 7px 19px 7px rgba(42, 79, 42, 0.17);
-
   font-size: 12px;
   font-weight: 700;
   overflow: hidden;
-`;
-
-export const CastPhotoThumb = styled.div`
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 10px;
 `;
 
 export const CastPhoto = styled.img`
@@ -43,18 +33,7 @@ export const CastPhoto = styled.img`
   min-height: 100%;
   height: 240px;
   width: 100%;
-
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  transition: transform 250ms linear;
-  transform: scale(1);
-
-  object-fit: cover;
-  object-position: center;
-
-  &:hover {
-    transform: scale(1.1);
-  }
+  border-radius: 8px;
 `;
 
 export const Wrap = styled.div`
@@ -65,29 +44,21 @@ export const Wrap = styled.div`
 `;
 
 export const MovieHero = styled.span`
-  color: ${props => props.theme.colors.accent};
+  color: darkgray;
 `;
 
 export const ActorsName = styled.h3`
-  margin-bottom: ${props => props.theme.space[4]}px;
+  margin-bottom: 16px;
   text-align: center;
-  color: ${({ theme }) => theme.text};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
+  color: darkblue;
+  font-size: 12px;
   font-weight: 500;
-
-  @media screen and (min-width: 480px) {
-    font-size: ${({ theme }) => theme.fontSizes.s};
-  }
 `;
 
 export const ActorsCharacter = styled.p`
-  margin-bottom: ${props => props.theme.space[4]}px;
+  margin-bottom: 16px;
   text-align: center;
-  color: ${({ theme }) => theme.text};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
+  color: darkgrey;
+  font-size: 8;
   font-weight: 500;
-
-  @media screen and (min-width: 480px) {
-    font-size: ${({ theme }) => theme.fontSizes.s};
-  }
 `;

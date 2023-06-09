@@ -1,97 +1,58 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-import ImageErrorView from 'components/ImageErrorView/ImageErrorView';
-import { Loader } from 'components/Loader/Loader';
-import { getMoviesCast } from 'services/themoviedbAPI';
+import { getMoviesCast } from 'service/movies-service';
 import {
   ActorsCharacter,
   ActorsName,
   CastItem,
   CastList,
   CastPhoto,
-  CastPhotoThumb,
-  MovieHero,
   Wrap,
 } from './Cast.styled';
-import Avatar from 'assets/avatar.jpg';
 
 const Cast = () => {
-  const location = useLocation();
   const { movieId } = useParams();
   const [castList, setCastList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const { t } = useTranslation();
-  const { i18n } = useTranslation();
-  const lng = i18n.language;
 
   useEffect(() => {
-    (async () => {
-      try {
-        setIsLoading(true);
-        setError(false);
-        const data = await getMoviesCast(movieId, lng);
-        setCastList(data);
-      } catch (error) {
-        setError(`{t('moviesPage.set_error')}`);
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, [movieId, lng]);
+    const fetchData = async () => {
+      const data = await getMoviesCast(movieId);
+      setCastList(data);
+    };
+
+    fetchData();
+  }, [movieId]);
 
   if (!castList) {
-    return <div>{t('loading')}</div>;
+    return <div>Loading...</div>;
   }
 
   return (
     <>
-      {isLoading && <Loader />}
-      {error && <ImageErrorView message={t('moviesPage.mistake')} />}
-      {error && !isLoading && (
-        <span style={{ color: 'red' }}>{t('moviesPage.cast_desription')}</span>
-      )}
-      {castList.length > 0 ? (
+      {castList.length > 0 && (
         <CastList>
           {castList.map(actor => (
-            <Link
-              to={`/actors/${actor.id}`}
-              state={{ from: location }}
-              key={actor.id}
-            >
-              <CastItem key={actor.id}>
-                <CastPhotoThumb>
-                  <CastPhoto
-                    src={
-                      actor.profile_path
-                        ? `https://image.tmdb.org/t/p/original${actor.profile_path}`
-                        : Avatar
-                    }
-                    alt={actor.name}
-                    width="120"
-                  />
-                </CastPhotoThumb>
+            <CastItem key={actor.id}>
+              <CastPhoto
+                src={
+                  actor.profile_path
+                    ? `https://image.tmdb.org/t/p/original${actor.profile_path}`
+                    : 'https://www.technocrazed.com/wp-content/uploads/2013/06/Discover_how_cinema_posters_similar_back-443x1024.jpg'
+                }
+                alt={actor.name}
+                width="120"
+              />
 
-                <Wrap>
-                  <ActorsName>{actor.name}</ActorsName>
-                  {actor.character && (
-                    <ActorsCharacter>
-                      {t('moviesPage.character')}
-                      <MovieHero>{actor.character}</MovieHero>
-                    </ActorsCharacter>
-                  )}
-                </Wrap>
-              </CastItem>
-            </Link>
+              <Wrap>
+                <ActorsName>{actor.name}</ActorsName>
+                {actor.character && (
+                  <ActorsCharacter>{actor.character}</ActorsCharacter>
+                )}
+              </Wrap>
+            </CastItem>
           ))}
         </CastList>
-      ) : (
-        <div style={{ padding: '26px', textAlign: 'center' }}>
-          {t('moviesPage.cast_desription')}
-        </div>
       )}
     </>
   );

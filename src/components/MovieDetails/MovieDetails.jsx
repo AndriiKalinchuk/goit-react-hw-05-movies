@@ -70,9 +70,10 @@ const MovieDetails = () => {
           </ul>
         </>
       )}
-
+      <p>Additional Information</p>
       <nav>
         <Link to={`${location.pathname}/cast`}>Cast</Link>
+
         <Link to={`${location.pathname}/reviews`}>Reviews</Link>
       </nav>
 
