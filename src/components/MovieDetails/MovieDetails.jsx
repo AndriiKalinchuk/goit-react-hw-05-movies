@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMoviesDetailsById } from 'service/movies-service';
 import {
@@ -15,8 +15,8 @@ import {
 
 const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState(null);
-
   const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const MovieDetails = () => {
 
   return (
     <MovieWrapper>
-      <StyledLink to={location.state?.from ?? '/movies'}>Go back</StyledLink>
+      <StyledLink to={backLinkLocationRef.current}>Go back</StyledLink>
       <DetailWrapper>
         <Poster
           src={
