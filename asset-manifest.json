@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/goit-react-hw-05-movies/static/css/main.7acaea2f.css",
-    "main.js": "/goit-react-hw-05-movies/static/js/main.5b7393fd.js",
+    "main.js": "/goit-react-hw-05-movies/static/js/main.f6006fa4.js",
     "static/js/415.3e522f04.chunk.js": "/goit-react-hw-05-movies/static/js/415.3e522f04.chunk.js",
     "static/js/593.8e45a606.chunk.js": "/goit-react-hw-05-movies/static/js/593.8e45a606.chunk.js",
-    "static/js/375.cf3373f9.chunk.js": "/goit-react-hw-05-movies/static/js/375.cf3373f9.chunk.js",
+    "static/js/375.5f03a47e.chunk.js": "/goit-react-hw-05-movies/static/js/375.5f03a47e.chunk.js",
     "static/js/313.27b9214b.chunk.js": "/goit-react-hw-05-movies/static/js/313.27b9214b.chunk.js",
     "static/media/pulp-fiction-john-travolta.gif": "/goit-react-hw-05-movies/static/media/pulp-fiction-john-travolta.59b46f4510af6cc07976.gif",
     "index.html": "/goit-react-hw-05-movies/index.html",
     "main.7acaea2f.css.map": "/goit-react-hw-05-movies/static/css/main.7acaea2f.css.map",
-    "main.5b7393fd.js.map": "/goit-react-hw-05-movies/static/js/main.5b7393fd.js.map",
+    "main.f6006fa4.js.map": "/goit-react-hw-05-movies/static/js/main.f6006fa4.js.map",
     "415.3e522f04.chunk.js.map": "/goit-react-hw-05-movies/static/js/415.3e522f04.chunk.js.map",
     "593.8e45a606.chunk.js.map": "/goit-react-hw-05-movies/static/js/593.8e45a606.chunk.js.map",
-    "375.cf3373f9.chunk.js.map": "/goit-react-hw-05-movies/static/js/375.cf3373f9.chunk.js.map",
+    "375.5f03a47e.chunk.js.map": "/goit-react-hw-05-movies/static/js/375.5f03a47e.chunk.js.map",
     "313.27b9214b.chunk.js.map": "/goit-react-hw-05-movies/static/js/313.27b9214b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.5b7393fd.js"
+    "static/js/main.f6006fa4.js"
   ]
 }
