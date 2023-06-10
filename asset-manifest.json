@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/goit-react-hw-05-movies/static/css/main.7acaea2f.css",
-    "main.js": "/goit-react-hw-05-movies/static/js/main.378c9d63.js",
-    "static/js/415.c8416ab0.chunk.js": "/goit-react-hw-05-movies/static/js/415.c8416ab0.chunk.js",
-    "static/js/905.f9e36c63.chunk.js": "/goit-react-hw-05-movies/static/js/905.f9e36c63.chunk.js",
-    "static/js/947.2e461f83.chunk.js": "/goit-react-hw-05-movies/static/js/947.2e461f83.chunk.js",
+    "main.js": "/goit-react-hw-05-movies/static/js/main.5b7393fd.js",
+    "static/js/415.3e522f04.chunk.js": "/goit-react-hw-05-movies/static/js/415.3e522f04.chunk.js",
+    "static/js/593.8e45a606.chunk.js": "/goit-react-hw-05-movies/static/js/593.8e45a606.chunk.js",
+    "static/js/375.cf3373f9.chunk.js": "/goit-react-hw-05-movies/static/js/375.cf3373f9.chunk.js",
     "static/js/313.27b9214b.chunk.js": "/goit-react-hw-05-movies/static/js/313.27b9214b.chunk.js",
     "static/media/pulp-fiction-john-travolta.gif": "/goit-react-hw-05-movies/static/media/pulp-fiction-john-travolta.59b46f4510af6cc07976.gif",
     "index.html": "/goit-react-hw-05-movies/index.html",
     "main.7acaea2f.css.map": "/goit-react-hw-05-movies/static/css/main.7acaea2f.css.map",
-    "main.378c9d63.js.map": "/goit-react-hw-05-movies/static/js/main.378c9d63.js.map",
-    "415.c8416ab0.chunk.js.map": "/goit-react-hw-05-movies/static/js/415.c8416ab0.chunk.js.map",
-    "905.f9e36c63.chunk.js.map": "/goit-react-hw-05-movies/static/js/905.f9e36c63.chunk.js.map",
-    "947.2e461f83.chunk.js.map": "/goit-react-hw-05-movies/static/js/947.2e461f83.chunk.js.map",
+    "main.5b7393fd.js.map": "/goit-react-hw-05-movies/static/js/main.5b7393fd.js.map",
+    "415.3e522f04.chunk.js.map": "/goit-react-hw-05-movies/static/js/415.3e522f04.chunk.js.map",
+    "593.8e45a606.chunk.js.map": "/goit-react-hw-05-movies/static/js/593.8e45a606.chunk.js.map",
+    "375.cf3373f9.chunk.js.map": "/goit-react-hw-05-movies/static/js/375.cf3373f9.chunk.js.map",
     "313.27b9214b.chunk.js.map": "/goit-react-hw-05-movies/static/js/313.27b9214b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.378c9d63.js"
+    "static/js/main.5b7393fd.js"
   ]
 }
