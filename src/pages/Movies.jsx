@@ -1,64 +1,40 @@
-import { useEffect, useState } from 'react';
-
-import { FiSearch } from 'react-icons/fi';
-import {
-  SearchFormButton,
-  SearchFormInput,
-  SearchForm,
-  SerchFormWrapper,
-} from './Movies.styled';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { getMoviesByQuery } from 'service/movies-service';
-import { Link } from 'react-router-dom';
+import MovieList from 'components/MovieList/MovieList';
+import SearchForm from 'components/SearchForm/SearchForm';
 
-export default function Movies({ onSubmit }) {
-  const [query, setQuery] = useState('');
+const Movies = () => {
   const [movies, setMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query');
+  const location = useLocation();
 
-  const handleChange = e => {
-    setQuery(e.target.value);
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (!query.trim()) {
-      return alert('Enter text');
-    }
-    onSubmit(query);
-    setQuery('');
+  const handleSearch = async search => {
+    setSearchParams({ query: search });
   };
 
   useEffect(() => {
-    const getMovies = async () => {
-      const data = await getMoviesByQuery(query);
-      setMovies(data.results);
+    const fetchMovies = async () => {
+      if (!query) {
+        return;
+      }
+      try {
+        const data = await getMoviesByQuery(query);
+        setMovies(data.results);
+      } catch (error) {
+        console.log('Error fetching movies:', error);
+      }
     };
-    getMovies();
+    fetchMovies();
   }, [query]);
 
   return (
     <>
-      <SerchFormWrapper>
-        <SearchForm onSubmit={handleSubmit}>
-          <SearchFormButton type="submit">
-            <FiSearch size="16px" />
-          </SearchFormButton>
-          <SearchFormInput
-            placeholder="What movie do you want to find?"
-            name="search"
-            // required
-            autoFocus
-            value={query}
-            onChange={handleChange}
-          />
-        </SearchForm>
-      </SerchFormWrapper>
-      <ul>
-        {movies.map(movie => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-      </ul>
+      <SearchForm onSubmit={handleSearch} />
+      <MovieList movies={movies} location={location} />
     </>
   );
-}
+};
+
+export default Movies;

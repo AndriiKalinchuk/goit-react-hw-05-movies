@@ -10,8 +10,12 @@ const MovieDetails = () => {
 
   useEffect(() => {
     const getDetails = async () => {
-      const data = await getMoviesDetailsById(movieId);
-      setMovieDetails(data);
+      try {
+        const data = await getMoviesDetailsById(movieId);
+        setMovieDetails(data);
+      } catch (error) {
+        console.log('Error fetching movie details:', error);
+      }
     };
     getDetails();
   }, [movieId]);
@@ -32,7 +36,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Link to={location.state?.from ?? '/'}>Go back</Link>
+      <Link to={location.state?.from ?? '/movies'}>Go back</Link>
       <img
         src={
           poster_path
@@ -40,7 +44,7 @@ const MovieDetails = () => {
             : 'https://www.technocrazed.com/wp-content/uploads/2013/06/Discover_how_cinema_posters_similar_back-443x1024.jpg'
         }
         alt={title || original_title}
-        width="1200"
+        width="240"
       />
       <h1>
         {title || original_title}
@@ -71,11 +75,14 @@ const MovieDetails = () => {
         </>
       )}
       <p>Additional Information</p>
-      <nav>
-        <Link to={`${location.pathname}/cast`}>Cast</Link>
-
-        <Link to={`${location.pathname}/reviews`}>Reviews</Link>
-      </nav>
+      <ul>
+        <li>
+          <Link to={`cast`}>Cast</Link>
+        </li>
+        <li>
+          <Link to={`reviews`}>Reviews</Link>
+        </li>
+      </ul>
 
       <Outlet />
     </>
