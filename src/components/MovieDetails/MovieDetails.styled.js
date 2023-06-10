@@ -1,16 +1,20 @@
 import styled from 'styled-components';
-import { NavLink as MovieLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export const NavLink = styled(MovieLink)`
-  position: relative;
-  z-index: 9;
+export const MovieWrapper = styled.div`
+  margin-top: 20px;
+`;
+
+export const StyledLink = styled(Link)`
+  margin-left: 16px;
   padding: 8px 16px;
+  border: 1px solid;
+  background-color: lightskyblue;
   border-radius: 4px;
   text-decoration: none;
-  color: black;
-  text-shadow: 0 0.4px 0.4px #fff, inset 40px 40px 40px #fff;
-  font-size: 12px;
-  font-weight: 500;
+  color: darkblue;
+  font-size: 16px;
+  font-weight: 700;
 
   &.active {
     color: #fff;
@@ -21,14 +25,19 @@ export const NavLink = styled(MovieLink)`
   :focus-visible:not(.active) {
     color: #fd5523;
   }
+`;
 
-  @media screen and (min-width: 480px) {
-    font-size: 14px;
-  }
+export const DetailWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 16px;
+  font-weight: 500;
 `;
 
 export const Poster = styled.img`
-  width: 100%;
+  width: 30%;
   height: 100%;
   border-radius: 8px;
   object-fit: cover;
@@ -46,9 +55,9 @@ export const WrapperDetails = styled.div`
 `;
 
 export const MainTitle = styled.h2`
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   text-align: center;
-  color: lightblue;
+  color: darkblue;
   font-size: 14;
   font-weight: 500;
   letter-spacing: 1.5px;
@@ -70,4 +79,10 @@ export const Genre = styled.li`
   font-weight: bold;
   border-radius: 5px;
   padding: 6px;
+`;
+
+export const Refs = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
 `;

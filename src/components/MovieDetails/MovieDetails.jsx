@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMoviesDetailsById } from 'service/movies-service';
+import {
+  MovieWrapper,
+  StyledLink,
+  Poster,
+  DetailWrapper,
+  WrapperDetails,
+  MainTitle,
+  Genres,
+  Genre,
+  Refs,
+} from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState(null);
@@ -35,57 +46,58 @@ const MovieDetails = () => {
   } = movieDetails;
 
   return (
-    <>
-      <Link to={location.state?.from ?? '/movies'}>Go back</Link>
-      <img
-        src={
-          poster_path
-            ? `https://image.tmdb.org/t/p/original${poster_path}`
-            : 'https://www.technocrazed.com/wp-content/uploads/2013/06/Discover_how_cinema_posters_similar_back-443x1024.jpg'
-        }
-        alt={title || original_title}
-        width="240"
-      />
-      <h1>
-        {title || original_title}
-        {release_date && <span> ({parseInt(release_date)})</span>}
-      </h1>
+    <MovieWrapper>
+      <StyledLink to={location.state?.from ?? '/movies'}>Go back</StyledLink>
+      <DetailWrapper>
+        <Poster
+          src={
+            poster_path
+              ? `https://image.tmdb.org/t/p/original${poster_path}`
+              : 'https://www.technocrazed.com/wp-content/uploads/2013/06/Discover_how_cinema_posters_similar_back-443x1024.jpg'
+          }
+          alt={title || original_title}
+        />
+        <WrapperDetails>
+          <MainTitle>
+            {title || original_title}
+            {release_date && <span> ({parseInt(release_date)})</span>}
+          </MainTitle>
 
-      {vote_average && (
-        <>
-          <p>User Score:{vote_average}</p>
-        </>
-      )}
+          {vote_average && (
+            <>
+              <p>User Score:{vote_average}</p>
+            </>
+          )}
 
-      {overview && (
-        <>
-          <h2>Overview</h2>
-          <p>{overview}</p>
-        </>
-      )}
+          {overview && (
+            <>
+              <h3>Overview</h3>
+              <p>{overview}</p>
+            </>
+          )}
 
-      {genres && (
-        <>
-          <h2>Genres:</h2>
-          <ul>
-            {genres.map((genre, index) => (
-              <li key={index}>{genre.name}</li>
-            ))}
-          </ul>
-        </>
-      )}
-      <p>Additional Information</p>
-      <ul>
+          {genres && (
+            <Genres>
+              <h3>Genres:</h3>
+              {genres.map((genre, index) => (
+                <Genre key={index}>{genre.name}</Genre>
+              ))}
+            </Genres>
+          )}
+        </WrapperDetails>
+      </DetailWrapper>
+      <h3>Additional Information</h3>
+      <Refs>
         <li>
-          <Link to={`cast`}>Cast</Link>
+          <StyledLink to={`cast`}>Cast</StyledLink>
         </li>
         <li>
-          <Link to={`reviews`}>Reviews</Link>
+          <StyledLink to={`reviews`}>Reviews</StyledLink>
         </li>
-      </ul>
+      </Refs>
 
       <Outlet />
-    </>
+    </MovieWrapper>
   );
 };
 

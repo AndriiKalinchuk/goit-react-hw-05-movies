@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FiSearch } from 'react-icons/fi';
+import {
+  SerchFormWrapper,
+  SearchFormStyled,
+  SearchFormButton,
+  SearchFormInput,
+} from './SearchForm.styled';
 
 const SearchForm = ({ onSubmit }) => {
   const [search, setSearch] = useState('');
@@ -19,20 +25,22 @@ const SearchForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="What movie do you want to find?"
-        name="search"
-        required
-        autoFocus
-        value={search}
-        onChange={handleChange}
-      />
-      <button type="submit">
-        <FiSearch size="16px" />
-      </button>
-    </form>
+    <SerchFormWrapper>
+      <SearchFormStyled onSubmit={handleSubmit}>
+        <SearchFormInput
+          type="text"
+          placeholder="What movie do you want to find?"
+          name="search"
+          required
+          autoFocus
+          value={search}
+          onChange={handleChange}
+        />
+        <SearchFormButton type="submit">
+          <FiSearch size="16px" />
+        </SearchFormButton>
+      </SearchFormStyled>
+    </SerchFormWrapper>
   );
 };
 
